@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Map</title>
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="./index.js"></script>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map" style="padding: 70px; max-height: 60%; margin-left: 10%; margin-right: 10%;"></div>
+        
+    <button class="button" style = "align-content: center" id="btnOK" onclick=" getValues();ok.performClick(this.value);">Reverse Geo</button>
+      
+      
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzM7a5FdL8g2Dag0vuAuuRFI8sqem-leM&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+  </body>
+</html>
