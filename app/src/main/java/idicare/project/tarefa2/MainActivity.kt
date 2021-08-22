@@ -2,13 +2,16 @@ package idicare.project.tarefa2
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val webView: WebView = findViewById(R.id.webview)
         webView.webViewClient = WebViewClient()
 
-        webView.loadUrl("https://www.google.pt/maps")
+        webView.loadUrl("http://192.168.1.64/")
 
         // this will enable the javascript settings
         webView.settings.javaScriptEnabled = true
@@ -28,17 +31,21 @@ class MainActivity : AppCompatActivity() {
         // if you want to enable zoom feature
         webView.settings.setSupportZoom(true)
 
-        val btnLocal = findViewById<Button>(R.id.btnlocal)
+        val popup = LayoutInflater.from(this).inflate(R.layout.dialogmorada,null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(popup)
 
-        btnLocal.setOnClickListener {
-            val popup = LayoutInflater.from(this).inflate(R.layout.dialogmorada,null)
-            val mBuilder = AlertDialog.Builder(this)
-                .setView(popup)
-            val mAlertDialog = mBuilder.show()
-            val textMorada = popup.findViewById<TextView>(R.id.textMorada)
-            textMorada.text = "Morada: "
-        }
 
+        webView.addJavascriptInterface(object:Any() {
+            @JavascriptInterface // For API 17+
+            fun performClick(string:String) {
+                val mAlertDialog = mBuilder.show()
+                val textMorada = popup.findViewById<TextView>(R.id.textMorada)
+                textMorada.text = string
+            }
+        }, "ok")
     }
+
+
 }
 

@@ -12,13 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/btnlocal"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="Morada Atual"
-        app:layout_constraintBottom_toBottomOf="@+id/webview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
